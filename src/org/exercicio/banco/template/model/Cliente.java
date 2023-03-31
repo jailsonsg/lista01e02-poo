@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 /**
 *
-* Nome:
-* Curso:
-* Matrícula:
+* Nome: Jailson da Silva Gomes
+* Curso: IPI
+* Matrícula: 20222INFIG0140
 * 
 */
 public class Cliente {
@@ -31,7 +31,12 @@ public class Cliente {
      * @param c
      */
     public void adicionarConta(ContaBancaria c) {
-
+    	if (contas.contains(c)) {
+    		System.out.print("A conta jah estah associada a este cliente.");
+    	} else {
+    		contas.add(c);
+    		System.out.print("Conta adicionada com sucesso");
+    	}
     }
 
     
@@ -45,7 +50,12 @@ public class Cliente {
      * @param c
      */
     public void removerConta(ContaBancaria c) {
-
+    	if(contas.contains(c)) {
+    		contas.remove(c);
+    		System.out.print("Conta removida com sucesso!");
+    	} else {
+    		System.out.print("A conta nao esta associada a este cliente.");
+    	}
     }
 
     /**
@@ -58,8 +68,16 @@ public class Cliente {
      * @param numero
      * @return
      */
-    public ContaBancaria localizarContaNumero(int numero) {
-        return null;
+    public ContaBancaria localizarContaNumero(ContaBancaria c) {
+        for(ContaBancaria conta : contas) {
+        	if (conta.getNumeroConta() == numero) {
+        		System.out.print("Conta encontrada!");
+        		return conta;
+        	} else {
+        		System.out.print("Conta nao encontrada.");
+        		return null;
+        	}
+        }
     }
 
     
@@ -74,7 +92,13 @@ public class Cliente {
      * @return
      */
     public boolean localizarConta(ContaBancaria c) {
-        return false;
+        if(contas.contains(c)) {
+        	System.out.print("Conta encontrada!");
+        	return true;
+        } else {
+        	System.out.print("Conta nao encontrada.");
+        	return false;
+        }
     }
 
     /**
@@ -86,7 +110,11 @@ public class Cliente {
      * @return
      */
     public double balancoEntreContas() {
-        return 0.0;
+        double soma = 0.0;
+        for(ContaBancaria conta:contas) {
+        	soma += conta.getSaldo();
+        } System.out.print("Balanço entre contras: RS" + soma);
+        return soma;
     }
     
     public ArrayList<ContaBancaria> getContas() {
